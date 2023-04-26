@@ -1,9 +1,8 @@
 {
   "translation": {
-    "welcome": "привет",
-    "bad-word": "Пошел нахуй",
     "pages": {
-      "not-found": "Страница не найдена"
+      "main": "Главная",
+      "price": "Прайс"
     }
   }
 }

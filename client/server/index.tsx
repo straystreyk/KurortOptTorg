@@ -21,8 +21,7 @@ app
   .use(express.static(path.resolve(__dirname, "../client")));
 
 app.use("*", async (req: express.Request, res: express.Response) => {
-  const { language, metaUrl } = await prepareLanguage(req, res);
-  console.log(metaUrl);
+  await prepareLanguage(req, res);
   const preloadedState = await prepareSsr(req.originalUrl);
   const indexHTML = await prepareTemplate(preloadedState, req);
 

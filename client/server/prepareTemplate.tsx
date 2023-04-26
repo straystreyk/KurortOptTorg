@@ -5,7 +5,7 @@ import ReactDOMServer from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
 import { Provider } from "react-redux";
 import { initStore, StoreStateType } from "../src/store/store";
-import { App } from "../src/components/app";
+import { App } from "../src/app";
 import { Request } from "express";
 import { Helmet } from "react-helmet";
 import { I18nextProvider } from "react-i18next";

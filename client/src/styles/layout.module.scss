@@ -1,0 +1,84 @@
+@import "common/variables";
+
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.layoutMainContent {
+  flex-grow: 1;
+  margin-top: 4.5rem;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.header {
+  padding: 1.25rem;
+  box-shadow: $boxShadow;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+  background: #fff;
+}
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headerLogo {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.headerLogoName {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1;
+  text-transform: capitalize;
+  justify-content: space-between;
+
+  & > span {
+    color: $grey;
+    display: inline-flex;
+    margin-top: 0.05rem;
+    font-size: 0.75rem;
+    font-weight: 300;
+  }
+}
+
+.navigationMenu {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.navigationMenuLink {
+  color: $black;
+
+  &.active {
+    color: $primary;
+  }
+}
+
+.footer {
+  box-shadow: $boxShadow;
+  padding-top: 1.3rem;
+}
+
+.secondFooter {
+  padding: 1.3rem;
+  border-top: 0.0675rem solid #e3e3e3;
+  color: $grey;
+  font-size: 0.75rem;
+  font-weight: 300;
+}

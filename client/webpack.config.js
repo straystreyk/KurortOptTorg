@@ -42,6 +42,10 @@ const ServerConfig = {
     publicPath: "/",
   },
   resolve: {
+    alias: {
+      "@styles": path.resolve(__dirname, "src", "styles"),
+      "@assets": path.resolve(__dirname, "src", "assets"),
+    },
     extensions: [".js", ".jsx", ".tsx", ".ts"],
   },
   plugins: [
@@ -113,11 +117,22 @@ const ServerConfig = {
           },
           {
             loader: "css-loader",
+            options: {
+              sourceMap: isDev,
+            },
           },
           {
             loader: "postcss-loader",
+            options: {
+              sourceMap: isDev,
+            },
           },
-          "sass-loader",
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: isDev,
+            },
+          },
         ],
       },
     ],
@@ -131,6 +146,7 @@ const ClientConfig = {
     filename: isDev ? "js/[name].js" : "js/[name].[contenthash:8].js",
     publicPath: "/",
   },
+  devtool: isDev ? "source-map" : false,
   mode: isDev ? "development" : "production",
   plugins: [
     ...(isDev
@@ -147,7 +163,6 @@ const ClientConfig = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "src", "public", "index_template.ejs"),
       filename: "start-page.html",
-      favicon: "src/public/favicon.ico",
       alwaysWriteToDisk: true,
       templateParameters: {
         globals: JSON?.stringify(globals) || {},
@@ -220,17 +235,32 @@ const ClientConfig = {
           },
           {
             loader: "css-loader",
+            options: {
+              sourceMap: isDev,
+            },
           },
           {
             loader: "postcss-loader",
+            options: {
+              sourceMap: isDev,
+            },
           },
-          "sass-loader",
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: isDev,
+            },
+          },
         ],
       },
     ],
   },
   resolve: {
     extensions: [".js", ".jsx", ".tsx", ".ts"],
+    alias: {
+      "@styles": path.resolve(__dirname, "src", "styles"),
+      "@assets": path.resolve(__dirname, "src", "assets"),
+    },
   },
   optimization: optimization(),
 };

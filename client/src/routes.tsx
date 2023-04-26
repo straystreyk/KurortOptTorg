@@ -8,8 +8,13 @@ const commonRoutes: RouteObject[] = [
     (lng) =>
       ({
         path: lng === defaultLanguage ? "/" : `/${lng}/`,
-        ...(lng === defaultLanguage ? { index: true } : {}),
         element: <Test />,
+        children: [
+          {
+            path: "test",
+            element: <Test />,
+          },
+        ],
       } as RouteObject)
   ),
 ];

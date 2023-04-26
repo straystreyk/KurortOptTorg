@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 
 import { StoreStateType } from "../store/store";
-import { Layout } from "./common/layout";
+import { Layout } from "./layout/layout";
 import { useTranslation } from "react-i18next";
 
 export const Test: React.FC<{ test?: string }> = ({ test }) => {

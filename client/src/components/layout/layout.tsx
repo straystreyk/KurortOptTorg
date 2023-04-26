@@ -1,14 +1,15 @@
-import React from "react";
 import { FC, ReactNode } from "react";
 
-import classes from "../../styles/common/layout.module.scss";
+import classes from "@styles/layout.module.scss";
+import { Header } from "./header";
+import { Footer } from "./footer";
 
 export const Layout: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <div className={classes.layout}>
-      <header>header</header>
+      <Header />
       <main className={classes.layoutMainContent}>{children}</main>
-      <footer>footer</footer>
+      <Footer />
     </div>
   );
 };

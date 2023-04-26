@@ -1,0 +1,11 @@
+$primary: #f0a500;
+$black: #171717;
+$grey: #858585;
+$boxShadow: rgba(0, 0, 0, 0.08) 0 4px 12px;
+
+html,
+body:root {
+  --primary: #{$primary};
+  --black: #{$black};
+  --grey: #{$grey};
+}
