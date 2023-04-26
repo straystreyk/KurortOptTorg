@@ -150,7 +150,7 @@ const ClientConfig = {
       favicon: "src/public/favicon.ico",
       alwaysWriteToDisk: true,
       templateParameters: {
-        globals: JSON.stringify(globals) || {},
+        globals: JSON?.stringify(globals) || {},
       },
       minify: {
         collapseWhitespace: isProd,
