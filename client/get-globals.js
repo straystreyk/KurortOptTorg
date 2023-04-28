@@ -1,12 +1,37 @@
-const dotenv = require("dotenv");
-dotenv.config();
+const fs = require("fs");
+const path = require("path");
 
-const globals = {};
+const pathToFile = path.resolve("src", "env.js");
+const pathToEnvDevFile = path.resolve(".env.dev");
+const pathToEnvProdFile = path.resolve(".env.prod");
+const isDev = process.env.NODE_ENV === "development";
 
-const getGlobals = () => {
-  if (process.env.API_URL) globals.API_URL = process.env.API_URL;
-  if (process.env.CLIENT_URL) globals.CLIENT_URL = process.env.CLIENT_URL;
-  return globals;
+const readAndGetData = () => {
+  try {
+    const file = fs.readFileSync(isDev ? pathToEnvDevFile : pathToEnvProdFile, {
+      encoding: "utf8",
+    });
+    const newFile = file
+      .trim()
+      .split("\n")
+      .map((item) => `export const ${item}`)
+      .join("\n");
+
+    fs.writeFileSync(pathToFile, newFile);
+  } catch (e) {
+    console.log(e.message);
+  }
 };
 
-module.exports = { getGlobals };
+const checkForEnvFile = () => {
+  const exist = fs.existsSync(pathToFile);
+
+  if (exist) {
+    return readAndGetData();
+  } else {
+    fs.writeFileSync(pathToFile, "");
+    return readAndGetData();
+  }
+};
+
+module.exports = { checkForEnvFile };

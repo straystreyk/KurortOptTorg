@@ -1,0 +1,35 @@
+@font-face {
+  font-family: "Urbanist";
+  font-style: normal;
+  font-weight: 300;
+  src: url("../src/assets/fonts/Urbanist/Urbanist-Light.ttf"); /* IE9 Compat Modes */
+  src: local("Urbanist Light"), local("Urbanist-Light"),
+    url("../src/assets/fonts/Urbanist/Urbanist-Light.ttf") format("truetype"); /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: "Urbanist";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../src/assets/fonts/Urbanist/Urbanist-Medium.ttf"); /* IE9 Compat Modes */
+  src: local("Urbanist Medium"), local("Urbanist-Medium"),
+    url("../src/assets/fonts/Urbanist/Urbanist-Medium.ttf") format("truetype"); /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: "Urbanist";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../src/assets/fonts/Urbanist/Urbanist-SemiBold.ttf"); /* IE9 Compat Modes */
+  src: local("Urbanist SemiBold"), local("Urbanist-SemiBold"),
+    url("../src/assets/fonts/Urbanist/Urbanist-SemiBold.ttf") format("truetype"); /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: "Urbanist";
+  font-style: normal;
+  font-weight: 600;
+  src: url("../src/assets/fonts/Urbanist/Urbanist-Bold.ttf"); /* IE9 Compat Modes */
+  src: local("Urbanist Bold"), local("Urbanist-Bold"),
+    url("../src/assets/fonts/Urbanist/Urbanist-Bold.ttf") format("truetype"); /* Safari, Android, iOS */
+}

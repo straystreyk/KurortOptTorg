@@ -7,12 +7,12 @@ const NodeExternals = require("webpack-node-externals");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
-const { getGlobals } = require("./get-globals");
+const { checkForEnvFile } = require("./get-globals.js");
 
 const isDev = process.env.NODE_ENV === "development";
 const isProd = !isDev;
 
-const globals = getGlobals();
+checkForEnvFile();
 
 const optimization = () => {
   const config = {
@@ -164,9 +164,9 @@ const ClientConfig = {
       template: path.join(__dirname, "src", "public", "index_template.ejs"),
       filename: "start-page.html",
       alwaysWriteToDisk: true,
-      templateParameters: {
-        globals: JSON?.stringify(globals) || {},
-      },
+      // templateParameters: {
+      //   globals: JSON?.stringify(globals) || {},
+      // },
       minify: {
         collapseWhitespace: isProd,
       },

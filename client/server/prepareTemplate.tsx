@@ -4,11 +4,12 @@ import React from "react";
 import ReactDOMServer from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
 import { Provider } from "react-redux";
-import { initStore, StoreStateType } from "../src/store/store";
+import { initStore } from "../src/store/store";
 import { App } from "../src/app";
 import { Request } from "express";
 import { Helmet } from "react-helmet";
 import { I18nextProvider } from "react-i18next";
+import { StoreStateType } from "../src/@types/redux";
 
 export const prepareTemplate = async (
   preloadedState: StoreStateType,

@@ -9,6 +9,7 @@
 .layoutMainContent {
   flex-grow: 1;
   margin-top: 4.5rem;
+  position: relative;
 }
 
 .container {
@@ -45,7 +46,6 @@
   font-size: 1.25rem;
   font-weight: 500;
   line-height: 1;
-  text-transform: capitalize;
   justify-content: space-between;
 
   & > span {
@@ -81,4 +81,18 @@
   color: $grey;
   font-size: 0.75rem;
   font-weight: 300;
+}
+
+.headerSocials {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.headerSocialLink {
+  color: $black;
+
+  &:hover {
+    color: $primary;
+  }
 }

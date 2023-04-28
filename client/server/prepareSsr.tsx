@@ -1,13 +1,18 @@
-import { initStore, StoreStateType } from "../src/store/store";
+import { initStore } from "../src/store/store";
+import { convertFromLanguageUrl } from "../src/helpers/ssr";
+import { StoreStateType } from "../src/@types/redux";
+import { mainPagerController } from "./controllers";
 
 export const prepareSsr: (url: string) => Promise<StoreStateType> = async (
-  url: string
+  originalUrl: string
 ) => {
-  const state: StoreStateType = JSON.parse(
-    JSON.stringify(initStore().getState())
-  );
+  const store = initStore();
+  const state: StoreStateType = JSON.parse(JSON.stringify(store.getState()));
+  const url = convertFromLanguageUrl(originalUrl);
 
-  state.counter.value = 123123;
+  if (url === "/") await mainPagerController(state);
+  if (url === "/price" || url === "/price/") {
+  }
 
   return state;
 };

@@ -1,5 +1,4 @@
 import path from "path";
-import dotenv from "dotenv";
 import express from "express";
 import { prepareTemplate } from "./prepareTemplate";
 import { prepareSsr } from "./prepareSsr";
@@ -8,8 +7,8 @@ import Backend from "i18next-fs-backend";
 import cookieParser from "cookie-parser";
 import i18n, { options } from "../src/i18n";
 import { prepareLanguage } from "./prepareLanguage";
+import { ENV_APP_PORT } from "../src/env";
 
-dotenv.config();
 const app = express();
 
 i18n.use(Backend).init(options);
@@ -32,8 +31,6 @@ app.use("*", async (req: express.Request, res: express.Response) => {
 });
 
 // run express server
-app.listen(process.env.APP_PORT, () => {
-  console.log(
-    `Express server started at http://localhost:${process.env.APP_PORT}`
-  );
+app.listen(+ENV_APP_PORT, () => {
+  console.log(`Express server started at http://localhost:${+ENV_APP_PORT}`);
 });

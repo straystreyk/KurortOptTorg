@@ -1,23 +1,23 @@
 import {
+  combineReducers,
   configureStore,
   type PreloadedState,
   type StateFromReducersMapObject,
 } from "@reduxjs/toolkit";
-import { counterReducers } from "./counterSlice";
+import { pagesSlice } from "./pagesSlice";
 
 const reducer = {
-  counter: counterReducers,
+  [pagesSlice.name]: pagesSlice.reducer,
 };
+
+export type PreloadedStateType = PreloadedState<
+  StateFromReducersMapObject<typeof reducer>
+>;
 
 export const initStore = (preloadedState?: PreloadedStateType) =>
   configureStore({
     reducer,
     preloadedState,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+    devTools: true,
   });
-
-export type Store = ReturnType<typeof initStore>;
-export type StoreStateType = ReturnType<Store["getState"]>;
-export type StoreDispatch = Store["dispatch"];
-export type PreloadedStateType = PreloadedState<
-  StateFromReducersMapObject<typeof reducer>
->;

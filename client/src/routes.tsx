@@ -1,18 +1,22 @@
 import React from "react";
 import { RouteObject, useRoutes } from "react-router-dom";
-import { Test } from "./components/test";
 import { defaultLanguage, supportedLngs } from "./i18n";
+import { MainPage } from "./pages/main";
+import { Price } from "./pages/price";
 
 const commonRoutes: RouteObject[] = [
   ...supportedLngs.map(
     (lng) =>
       ({
         path: lng === defaultLanguage ? "/" : `/${lng}/`,
-        element: <Test />,
         children: [
           {
-            path: "test",
-            element: <Test />,
+            index: true,
+            element: <MainPage />,
+          },
+          {
+            path: "price",
+            element: <Price />,
           },
         ],
       } as RouteObject)
