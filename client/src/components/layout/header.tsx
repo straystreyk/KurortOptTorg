@@ -8,9 +8,8 @@ import { Link, useLocation } from "react-router-dom";
 import { convertFromLanguageUrl } from "../../helpers/ssr";
 import { formatPhoneNumber } from "../../helpers/common";
 import { TIcons } from "../customIcon/iconConfig";
-import { useDispatch, useSelector } from "../../hooks/redux";
-import { useEffect } from "react";
 import { useGetSocialsQuery } from "../../store/api";
+import { PortalTooltip } from "../portalTooltip";
 
 const links = [
   {
@@ -50,25 +49,43 @@ const Navigation = () => {
 };
 
 const Socials = () => {
-  const socials = { phone: "aslkdm", socialNetworks: [] };
+  const { data } = useGetSocialsQuery();
+  const socials = data?.data?.attributes;
 
   return (
     <>
       {socials && (
         <div className={classes.headerSocials}>
-          <a className={classes.headerSocialLink} href={`tel:${socials.phone}`}>
-            {formatPhoneNumber("+79882812276")}
-          </a>
-          {socials?.socialNetworks?.map((item: any, index) => (
+          <PortalTooltip
+            placement="bottom-middle"
+            tooltipContent="Контактный телефон"
+          >
             <a
               className={classes.headerSocialLink}
-              target="_blank"
-              href={item.link}
-              key={item.name + index}
+              href={`tel:${socials.phone}`}
             >
-              <CustomIcon icon={item.name as TIcons} />
+              {formatPhoneNumber(socials.phone)}
             </a>
-          ))}
+          </PortalTooltip>
+          {socials?.socialNetworks?.map((item, index) => {
+            const name = item.name === "geotag" ? "Yandex карты" : item.name;
+
+            return (
+              <PortalTooltip
+                key={name + index}
+                placement="bottom-middle"
+                tooltipContent={name[0].toUpperCase() + name.substring(1)}
+              >
+                <a
+                  className={classes.headerSocialLink}
+                  target="_blank"
+                  href={item.link}
+                >
+                  <CustomIcon icon={item.name as TIcons} />
+                </a>
+              </PortalTooltip>
+            );
+          })}
         </div>
       )}
     </>
@@ -76,8 +93,6 @@ const Socials = () => {
 };
 
 export const Header = () => {
-  const { data } = useGetSocialsQuery();
-  console.log(data);
   return (
     <header className={classes.header}>
       <Container>

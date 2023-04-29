@@ -1,9 +1,14 @@
 @import "common/variables";
+@import "common/mixins";
 
 .layout {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.block {
+  margin-top: 6rem;
 }
 
 .layoutMainContent {
@@ -91,6 +96,7 @@
 
 .headerSocialLink {
   color: $black;
+  @include transition(color);
 
   &:hover {
     color: $primary;

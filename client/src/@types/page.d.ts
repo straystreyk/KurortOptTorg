@@ -1,5 +1,7 @@
-export interface IPage<T> {
-  attributes: T;
+export interface IStrapiAttributes<T> {
+  data: {
+    attributes: T;
+  };
 }
 
 interface ISeo {

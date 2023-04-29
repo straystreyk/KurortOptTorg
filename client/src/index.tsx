@@ -11,9 +11,6 @@ import "./index.module.scss";
 import "./i18n";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
-const container = document.getElementById("app") as HTMLElement;
-const LanguageApp = withSSR()(App);
-
 const STORE = window._SSR_STORE_STATE_;
 const I18N_STORE = window.initialI18nStore;
 const I18N_INITIAL_LANGUAGE = window.initialLanguage;
@@ -23,8 +20,11 @@ delete window.initialI18nStore;
 delete window.initialLanguage;
 
 const store = initStore(STORE);
+const LanguageApp = withSSR()(App);
+
 setupListeners(store.dispatch);
 
+const container = document.getElementById("app") as HTMLElement;
 const root = ReactDOM.hydrateRoot(
   container,
   <BrowserRouter>

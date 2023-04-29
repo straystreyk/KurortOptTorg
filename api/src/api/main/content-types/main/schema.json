@@ -25,6 +25,16 @@
         }
       },
       "component": "seo.seo"
+    },
+    "block1": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "block.block-text-image"
     }
   }
 }

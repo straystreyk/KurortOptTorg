@@ -9,11 +9,24 @@ export const prepareSsr: (url: string) => Promise<TConfiguredStore> = async (
   const url = convertFromLanguageUrl(originalUrl);
 
   if (url === "/") {
-    store.dispatch(api.endpoints.getPageDataByName.initiate("main"));
+    store.dispatch(
+      api.endpoints.getPageDataByName.initiate({
+        name: "main",
+        params: { populate: "seo,seo.meta,block1" },
+      })
+    );
     store.dispatch(api.endpoints.getSocials.initiate());
   }
 
-  await Promise.all(store.dispatch(api.util.getRunningQueriesThunk()));
+  if (url === "/price" || url === "/price/") {
+    store.dispatch(api.endpoints.getSocials.initiate());
+  }
+
+  try {
+    await Promise.all(store.dispatch(api.util.getRunningQueriesThunk()));
+  } catch (e) {
+    console.log(e.message);
+  }
 
   return store;
 };

@@ -1,0 +1,12 @@
+@mixin transition($property, $duration: 0.25s, $timing-function: ease) {
+  transition: $property $duration $timing-function;
+}
+@mixin transition2(
+  $property1,
+  $property2,
+  $duration: 0.25s,
+  $timing-function: ease
+) {
+  transition: $property1 $duration $timing-function,
+    $property2 $duration $timing-function;
+}

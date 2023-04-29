@@ -50,6 +50,22 @@ body {
   }
 }
 
+h1 {
+  font-weight: 600;
+  font-size: clamp(3rem, 8.05vw - 1.7rem, 4rem);
+  line-height: clamp(3.125rem, 3vw + 2.3rem, 3.5rem);
+}
+
+button,
+input,
+textarea {
+  background: unset;
+  border: unset;
+  cursor: pointer;
+  font-family: "Urbanist", sans-serif;
+  font-weight: 400;
+}
+
 /* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
 ul[class],
 ol[class] {

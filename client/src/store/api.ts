@@ -5,6 +5,7 @@ import {
   reactHooksModule,
 } from "@reduxjs/toolkit/query/react";
 import { ENV_API_URL } from "../env";
+import { ISocials, IStrapiAttributes, TPageKeys } from "../@types/page";
 
 const createApi = buildCreateApi(
   coreModule(),
@@ -15,15 +16,16 @@ export const api = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: ENV_API_URL }),
   endpoints: (builder) => ({
-    getPageDataByName: builder.query<any, string>({
-      query: (name) => ({
+    getPageDataByName: builder.query<
+      any,
+      { name: TPageKeys; params?: Record<string, string> }
+    >({
+      query: ({ name, params }) => ({
         url: `/${name}`,
-        params: {
-          populate: "seo,seo.meta",
-        },
+        params: params ?? {},
       }),
     }),
-    getSocials: builder.query<any, void>({
+    getSocials: builder.query<IStrapiAttributes<ISocials>, void>({
       query: () => ({
         url: "/social",
         params: {

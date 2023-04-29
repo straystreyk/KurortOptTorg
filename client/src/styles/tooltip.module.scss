@@ -1,0 +1,105 @@
+@import "common/variables";
+@import "common/mixins";
+
+.tooltipWrapper {
+  position: relative;
+  display: flex;
+}
+
+.tooltipContent {
+  padding: 1rem;
+  text-align: left;
+  background-color: #fff;
+  max-width: 16.5rem;
+  width: max-content;
+  line-height: 1.5rem;
+  color: black;
+  font-size: 1rem;
+  border-radius: 0.75rem;
+  border: 0.0625rem solid black;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.35s opacity ease;
+  position: absolute;
+  top: 0;
+  z-index: 1000;
+  box-shadow: black;
+
+  &.tooltipActive {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+.infoTooltipIcon {
+  color: rgba(black, 0.5);
+  display: flex;
+  @include transition(color);
+
+  &:hover {
+    color: black;
+  }
+}
+
+.portalTooltipWrapper {
+  position: absolute;
+  transition: 0.35s all ease;
+  z-index: 100;
+}
+
+.portalTooltipContent {
+  background: black;
+  padding: 0.75rem;
+  color: #fff;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  text-align: center;
+  border-radius: 0.5rem;
+  max-width: 15rem;
+
+  &.triangledContent {
+    position: relative;
+
+    &:before {
+      position: absolute;
+      content: "";
+      background: black;
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 0.1rem;
+    }
+
+    &:global(.bottom-middle) {
+      &:before {
+        bottom: 100%;
+        right: 50%;
+        transform: rotate(45deg) translateX(75%);
+      }
+    }
+    &:global(.top-middle) {
+      &:before {
+        top: 100%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+    }
+    &:global(.right-middle) {
+      &:before {
+        top: 50%;
+        left: 0;
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+    }
+    &:global(.left-middle) {
+      &:before {
+        top: 50%;
+        right: 0;
+        transform: translate(50%, -50%) rotate(45deg);
+      }
+    }
+  }
+}
+
+.tooltipChildrenWrapper {
+  cursor: pointer;
+}

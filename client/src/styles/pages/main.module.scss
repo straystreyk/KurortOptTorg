@@ -1,0 +1,20 @@
+@import "../common/variables";
+
+.mainBlock1 {
+  display: flex;
+}
+
+.mainBlock1Left {
+  display: flex;
+  flex-direction: column;
+  max-width: 40rem;
+  align-items: flex-start;
+}
+
+.mainBlock1Description {
+  margin-top: 1.75rem;
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  color: $grey;
+  margin-bottom: 1rem;
+}
