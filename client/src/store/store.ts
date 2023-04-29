@@ -1,14 +1,15 @@
 import {
-  combineReducers,
   configureStore,
   type PreloadedState,
   type StateFromReducersMapObject,
 } from "@reduxjs/toolkit";
-import { pagesSlice } from "./pagesSlice";
+import { api } from "./api";
 
 const reducer = {
-  [pagesSlice.name]: pagesSlice.reducer,
+  [api.reducerPath]: api.reducer,
 };
+
+export type TConfiguredStore = ReturnType<typeof configureStore>;
 
 export type PreloadedStateType = PreloadedState<
   StateFromReducersMapObject<typeof reducer>
@@ -18,6 +19,7 @@ export const initStore = (preloadedState?: PreloadedStateType) =>
   configureStore({
     reducer,
     preloadedState,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(api.middleware),
     devTools: true,
   });

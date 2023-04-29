@@ -9,6 +9,7 @@ import { initStore } from "./store/store";
 
 import "./index.module.scss";
 import "./i18n";
+import { setupListeners } from "@reduxjs/toolkit/query";
 
 const container = document.getElementById("app") as HTMLElement;
 const LanguageApp = withSSR()(App);
@@ -22,6 +23,7 @@ delete window.initialI18nStore;
 delete window.initialLanguage;
 
 const store = initStore(STORE);
+setupListeners(store.dispatch);
 
 const root = ReactDOM.hydrateRoot(
   container,

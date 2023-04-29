@@ -21,8 +21,8 @@ app
 
 app.use("*", async (req: express.Request, res: express.Response) => {
   await prepareLanguage(req, res);
-  const preloadedState = await prepareSsr(req.originalUrl);
-  const indexHTML = await prepareTemplate(preloadedState, req);
+  const preloadedStore = await prepareSsr(req.originalUrl);
+  const indexHTML = await prepareTemplate(preloadedStore, req);
 
   res.contentType("text/html");
   res.status(200);

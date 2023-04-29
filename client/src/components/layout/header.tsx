@@ -10,7 +10,7 @@ import { formatPhoneNumber } from "../../helpers/common";
 import { TIcons } from "../customIcon/iconConfig";
 import { useDispatch, useSelector } from "../../hooks/redux";
 import { useEffect } from "react";
-import { fetchPageByName, fetchSocials } from "../../store/pagesSlice";
+import { useGetSocialsQuery } from "../../store/api";
 
 const links = [
   {
@@ -50,15 +50,7 @@ const Navigation = () => {
 };
 
 const Socials = () => {
-  const { data, preloaded } = useSelector((state) => state.pages.socials);
-  const dispatch = useDispatch();
-
-  const socials = data?.attributes;
-
-  useEffect(() => {
-    if (!data && !preloaded) dispatch(fetchSocials());
-    console.log("asd");
-  }, []);
+  const socials = { phone: "aslkdm", socialNetworks: [] };
 
   return (
     <>
@@ -67,7 +59,7 @@ const Socials = () => {
           <a className={classes.headerSocialLink} href={`tel:${socials.phone}`}>
             {formatPhoneNumber("+79882812276")}
           </a>
-          {socials.socialNetworks?.map((item, index) => (
+          {socials?.socialNetworks?.map((item: any, index) => (
             <a
               className={classes.headerSocialLink}
               target="_blank"
@@ -84,6 +76,8 @@ const Socials = () => {
 };
 
 export const Header = () => {
+  const { data } = useGetSocialsQuery();
+  console.log(data);
   return (
     <header className={classes.header}>
       <Container>

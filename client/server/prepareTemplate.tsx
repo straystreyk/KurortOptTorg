@@ -4,15 +4,14 @@ import React from "react";
 import ReactDOMServer from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
 import { Provider } from "react-redux";
-import { initStore } from "../src/store/store";
 import { App } from "../src/app";
 import { Request } from "express";
 import { Helmet } from "react-helmet";
 import { I18nextProvider } from "react-i18next";
-import { StoreStateType } from "../src/@types/redux";
+import { TConfiguredStore } from "../src/store/store";
 
 export const prepareTemplate = async (
-  preloadedState: StoreStateType,
+  preloadedStore: TConfiguredStore,
   req: Request
 ) => {
   const helmet = Helmet.renderStatic();
@@ -31,7 +30,7 @@ export const prepareTemplate = async (
   const appHTML = ReactDOMServer.renderToString(
     <StaticRouter location={req.originalUrl}>
       <I18nextProvider i18n={req.i18n}>
-        <Provider store={initStore(preloadedState)}>
+        <Provider store={preloadedStore}>
           <App />
         </Provider>
       </I18nextProvider>
@@ -43,9 +42,9 @@ export const prepareTemplate = async (
       '<div id="app"></div>',
       `
       <div id="app">${appHTML}</div> 
-      <script type="text/javascript">
+      <script type="text/javascript"> 
       window._SSR_STORE_STATE_ = 
-      ${JSON.stringify(initStore(preloadedState).getState())};
+      ${JSON.stringify(preloadedStore.getState())};
       window.initialI18nStore = ${JSON.stringify(initialI18nStore)};
       window.initialLanguage = "${initialLanguage}";
       </script>

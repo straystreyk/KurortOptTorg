@@ -1,18 +1,19 @@
-import { initStore } from "../src/store/store";
+import { initStore, TConfiguredStore } from "../src/store/store";
 import { convertFromLanguageUrl } from "../src/helpers/ssr";
-import { StoreStateType } from "../src/@types/redux";
-import { mainPagerController } from "./controllers";
+import { api } from "../src/store/api";
 
-export const prepareSsr: (url: string) => Promise<StoreStateType> = async (
+export const prepareSsr: (url: string) => Promise<TConfiguredStore> = async (
   originalUrl: string
 ) => {
   const store = initStore();
-  const state: StoreStateType = JSON.parse(JSON.stringify(store.getState()));
   const url = convertFromLanguageUrl(originalUrl);
 
-  if (url === "/") await mainPagerController(state);
-  if (url === "/price" || url === "/price/") {
+  if (url === "/") {
+    store.dispatch(api.endpoints.getPageDataByName.initiate("main"));
+    store.dispatch(api.endpoints.getSocials.initiate());
   }
 
-  return state;
+  await Promise.all(store.dispatch(api.util.getRunningQueriesThunk()));
+
+  return store;
 };
