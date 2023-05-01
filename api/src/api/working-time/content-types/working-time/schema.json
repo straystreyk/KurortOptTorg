@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "working_times",
+  "info": {
+    "singularName": "working-time",
+    "pluralName": "working-times",
+    "displayName": "Время работы",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "wotkingTime": {
+      "type": "component",
+      "repeatable": true,
+      "component": "socials.working-time"
+    }
+  }
+}

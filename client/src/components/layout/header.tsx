@@ -22,6 +22,16 @@ const links = [
   },
 ];
 
+export const Logo = () => (
+  <div className={classes.headerLogo}>
+    <CustomIcon icon="logo" />
+    <div className={classes.headerLogoName}>
+      КурортОптТорг
+      <span>Бетон, бетонные изделия</span>
+    </div>
+  </div>
+);
+
 const Navigation = () => {
   const { t } = useTranslation();
   const { pathname } = useLocation();
@@ -67,6 +77,17 @@ const Socials = () => {
               {formatPhoneNumber(socials.phone)}
             </a>
           </PortalTooltip>
+          <PortalTooltip
+            placement="bottom-middle"
+            tooltipContent="Контактная почта"
+          >
+            <a
+              className={classes.headerSocialLink}
+              href={`mailto:${socials.email}`}
+            >
+              <CustomIcon icon="email" />
+            </a>
+          </PortalTooltip>
           {socials?.socialNetworks?.map((item, index) => {
             const name = item.name === "geotag" ? "Yandex карты" : item.name;
 
@@ -97,13 +118,7 @@ export const Header = () => {
     <header className={classes.header}>
       <Container>
         <div className={classes.headerContent}>
-          <div className={classes.headerLogo}>
-            <CustomIcon icon="logo" />
-            <div className={classes.headerLogoName}>
-              КурортОптТорг
-              <span>Бетон, бетонные изделия</span>
-            </div>
-          </div>
+          <Logo />
           <Navigation />
           <Socials />
         </div>

@@ -13,8 +13,25 @@
 
 .mainBlock1Description {
   margin-top: 1.75rem;
-  font-size: 1.125rem;
-  line-height: 1.5rem;
   color: $grey;
   margin-bottom: 1rem;
+}
+
+.mainContactsPopup {
+  width: 90vw;
+  max-width: 30rem;
+  max-height: 90vh;
+}
+
+.mainContactsContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.mainContactBtn {
+  width: 100%;
+  text-align: center;
+  justify-content: center;
 }

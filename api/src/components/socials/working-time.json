@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_socials_working_times",
+  "info": {
+    "displayName": "workingTime"
+  },
+  "options": {},
+  "attributes": {
+    "day": {
+      "type": "string"
+    },
+    "time": {
+      "type": "string"
+    }
+  }
+}

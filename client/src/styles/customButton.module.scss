@@ -6,10 +6,24 @@
   color: #fff;
   background: $black;
   border-radius: 0.5rem;
-  @include transition2(color, background);
+  display: inline-flex;
+  gap: 0.5rem;
+  @include transition(all);
 
   &:hover {
     background: $primary;
     color: $black;
+  }
+
+  &.customButtonOutline {
+    background: unset;
+    border: 0.125rem solid $black;
+    color: $black;
+
+    &:hover {
+      background: unset;
+      color: $primary;
+      border-color: $primary;
+    }
   }
 }

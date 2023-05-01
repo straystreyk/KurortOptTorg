@@ -77,7 +77,10 @@
 
 .footer {
   box-shadow: $boxShadow;
-  padding-top: 1.3rem;
+}
+
+.firstFooter {
+  padding: 1.5rem 0;
 }
 
 .secondFooter {
@@ -86,6 +89,7 @@
   color: $grey;
   font-size: 0.75rem;
   font-weight: 300;
+  text-align: center;
 }
 
 .headerSocials {

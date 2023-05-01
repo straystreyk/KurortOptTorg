@@ -1,0 +1,40 @@
+@import "common/mixins";
+@import "common/variables";
+
+.popupContent {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  opacity: 0;
+  transform: translate(-50%, -30%);
+  background: #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  @include transition(all);
+
+  &.popupContentActive {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.popupTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.popupDescription {
+  color: $grey;
+  margin-top: 0.2rem;
+}
+
+.popupCloseBtn {
+  @include transition(all);
+
+  &:hover {
+    color: $primary;
+  }
+}
