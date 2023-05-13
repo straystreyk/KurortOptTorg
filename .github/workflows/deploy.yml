@@ -6,9 +6,13 @@ on:
       - CustomBranch
 
 jobs:
-  deploy:
-    runs-on: ubuntu-22.04
+  build:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Run a one-line script
-        run: echo Hello world!
+        run: echo Hello, world!
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
