@@ -1,4 +1,4 @@
-name: Deploy
+name: TestsAndDeploy
 
 on:
   push:
@@ -6,19 +6,29 @@ on:
       - CustomBranch
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  deploy-client:
+    runs-on: ubuntu-22.04
+    env:
+      key_name: key
+      server_connection_params: root@185.41.161.127
+      server_site_path: ~/sites
+    strategy:
+      matrix:
+        node-version: [ 18.x ]
     steps:
-      - with:
-          node-version: [18.x]
-      - name: Build and Deploy client
       - uses: actions/checkout@v2
-        # Setup key
+      - uses: actions/setup-node@v1
+        with:
+          node-version: [ 18.x ]
+      # Setup key
+      - run: echo "🔎 Setup Key"
       - run: set -eu
       - run: mkdir "$HOME/.ssh"
-      - run: echo "${{ secrets.key }}" > "$HOME/.ssh/key"
-      - run: chmod 600 "$HOME/.ssh/key"
-        # Deploy
-      - run: cd client
+      - run: echo "${{ secrets.key }}" > "$HOME/.ssh/$key_name"
+      - run: chmod 600 "$HOME/.ssh/$key_name"
+      # Build
+      - run: echo "🐧 Install dependencies and build"
       - run: npm ci
-      - run: rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete . root@185.41.161.127:/sites/
+      # Deploy
+      - run: echo "🎉 Deploy"
+      - run: rsync -e "ssh -i $HOME/.ssh/$key_name -o StrictHostKeyChecking=no" -a --progress build $server_connection_params:$server_site_path
