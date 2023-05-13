@@ -10,11 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - with:
-          node-version: ${{ matrix.node-version }}
+          node-version: [18.x]
       - uses: actions/checkout@v2
-      - name: Run a one-line script
-        run: echo Hello, world!
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: Build and Deploy client
+        # Setup key
+      - run: set -eu
+      - run: mkdir "$HOME/.ssh"
+      - run: echo "${{ secrets.key }}" > "$HOME/.ssh/key"
+      - run: chmod 600 "$HOME/.ssh/key"
+        # Deploy
+      - run: cd client
+      - run: npm ci
+      - run: rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete . root@185.41.161.127:/sites/
