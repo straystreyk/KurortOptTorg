@@ -18,6 +18,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
       # Setup key
       - run: echo "🔎 Setup Key "
       - run: set -eu
@@ -42,6 +44,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
       # Setup key
       - run: echo "🔎 Setup Key "
       - run: set -eu
