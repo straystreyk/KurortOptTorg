@@ -30,8 +30,16 @@ jobs:
       # Deploy
       - run: echo "🎉 Deploy "
       - run: cd client && rsync -e "ssh -i $HOME/.ssh/$key_name -o StrictHostKeyChecking=no" -a --progress build $server_connection_params:$server_site_path/client
-
     deploy-cms:
+      runs-on: ubuntu-22.04
+      env:
+        key_name: key
+        server_connection_params: root@185.41.161.127
+        server_site_path: ~/sites/KurortOptTorg
+      strategy:
+        matrix:
+          node-version: [ 18.x ]
+      steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
       # Setup key
