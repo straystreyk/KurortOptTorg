@@ -19,14 +19,14 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
       # Setup key
-      - run: echo "🔎 Setup Key"
+      - run: echo "🔎 Setup Key "
       - run: set -eu
       - run: mkdir "$HOME/.ssh"
       - run: echo "${{ secrets.SSH_KEY }}" > "$HOME/.ssh/$key_name"
       - run: chmod 600 "$HOME/.ssh/$key_name"
       # Build
-      - run: echo "🐧 Install dependencies and build"
+      - run: echo "🐧 Install dependencies and build "
       - run: cd client && npm ci
       # Deploy
-      - run: echo "🎉 Deploy"
+      - run: echo "🎉 Deploy "
       - run: rsync -e "ssh -i $HOME/.ssh/$key_name -o StrictHostKeyChecking=no" -a --progress client/build $server_connection_params:$server_site_path
