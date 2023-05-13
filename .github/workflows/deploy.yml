@@ -29,4 +29,4 @@ jobs:
       - run: cd client && npm ci
       # Deploy
       - run: echo "🎉 Deploy "
-      - run: rsync -e "ssh -i $HOME/.ssh/$key_name -o StrictHostKeyChecking=no" -a --progress client/build $server_connection_params:$server_site_path
+      - run: cd client && rsync -e "ssh -i $HOME/.ssh/$key_name -o StrictHostKeyChecking=no" -a --progress build $server_connection_params:$server_site_path
