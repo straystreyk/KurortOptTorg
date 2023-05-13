@@ -11,7 +11,7 @@ jobs:
     env:
       key_name: key
       server_connection_params: root@185.41.161.127
-      server_site_path: ~/sites
+      server_site_path: ~/sites/KurortOptTorg
     strategy:
       matrix:
         node-version: [ 18.x ]
@@ -29,4 +29,20 @@ jobs:
       - run: cd client && npm ci && npm run build
       # Deploy
       - run: echo "🎉 Deploy "
-      - run: cd client && rsync -e "ssh -i $HOME/.ssh/$key_name -o StrictHostKeyChecking=no" -a --progress build $server_connection_params:$server_site_path
+      - run: cd client && rsync -e "ssh -i $HOME/.ssh/$key_name -o StrictHostKeyChecking=no" -a --progress build $server_connection_params:$server_site_path/client
+
+    deploy-cms:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      # Setup key
+      - run: echo "🔎 Setup Key "
+      - run: set -eu
+      - run: mkdir "$HOME/.ssh"
+      - run: echo "${{ secrets.SECRET_KEY_NEW }}" > "$HOME/.ssh/$key_name"
+      - run: chmod 600 "$HOME/.ssh/$key_name"
+      # Build
+      - run: echo "🐧 Install dependencies and build "
+      - run: cd api && npm ci && npm run build
+      # Deploy
+      - run: echo "🎉 Deploy "
+      - run: cd api && rsync -e "ssh -i $HOME/.ssh/$key_name -o StrictHostKeyChecking=no" -a --progress . $server_connection_params:$server_site_path/api
