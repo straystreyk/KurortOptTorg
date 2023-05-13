@@ -22,7 +22,7 @@ jobs:
       - run: echo "🔎 Setup Key "
       - run: set -eu
       - run: mkdir "$HOME/.ssh"
-      - run: echo "${{ secrets.SSH_KEY }}" > "$HOME/.ssh/$key_name"
+      - run: echo "${{ secrets.SECRET_KEY_NEW }}" > "$HOME/.ssh/$key_name"
       - run: chmod 600 "$HOME/.ssh/$key_name"
       # Build
       - run: echo "🐧 Install dependencies and build "
