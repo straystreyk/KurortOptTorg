@@ -8,10 +8,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    with:
-      node-version: '18'
     steps:
-      - uses: actions/checkout@v2
+      - with:
+          node-version: '18'
       # Setup key
       - run: set -eu
       - run: mkdir "$HOME/.ssh"
