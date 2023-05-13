@@ -26,8 +26,7 @@ jobs:
       - run: chmod 600 "$HOME/.ssh/$key_name"
       # Build
       - run: echo "🐧 Install dependencies and build"
-      - run: cd client
-      - run: npm ci
+      - run: cd client && npm ci
       # Deploy
       - run: echo "🎉 Deploy"
       - run: rsync -e "ssh -i $HOME/.ssh/$key_name -o StrictHostKeyChecking=no" -a --progress client/build $server_connection_params:$server_site_path
