@@ -14,6 +14,7 @@ import { Popup } from "../components/popup";
 import { CustomIcon } from "../components/customIcon/customIcon";
 import { TIcons } from "../components/customIcon/iconConfig";
 import { formatPhoneNumber } from "../helpers/common";
+import { MarkdownText } from "../components/markdownText";
 
 const ContactsPopup = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -95,7 +96,7 @@ export const MainPage: React.FC = () => {
                     <div
                       className={cn(classes.mainBlock1Description, "custom-t1")}
                     >
-                      {block1.description}
+                      <MarkdownText text={block1.description} />
                     </div>
                   )}
                   <ContactsPopup />

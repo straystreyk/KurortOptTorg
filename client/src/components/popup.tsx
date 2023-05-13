@@ -25,6 +25,12 @@ export const Popup: FC<{
   const [active, setActive] = useState(false);
   const [mounted, setMounted] = useState(false);
 
+  const escClose = (e: KeyboardEvent) => {
+    if (e.key === "Escape") {
+      handleClose();
+    }
+  };
+
   useEffect(() => {
     let timeout: NodeJS.Timeout | null = null;
     show &&
@@ -33,17 +39,20 @@ export const Popup: FC<{
     if (show) {
       setMounted(true);
       timeout = setTimeout(() => setActive(true), 50);
+      window.addEventListener("keydown", escClose);
     }
 
     if (!show) {
       setActive(false);
       document.body.style.cssText = "";
       timeout && clearTimeout(timeout);
+      window.removeEventListener("keydown", escClose);
     }
 
     return () => {
       timeout && clearTimeout(timeout);
       document.body.style.cssText = "";
+      window.removeEventListener("keydown", escClose);
     };
   }, [show]);
 

@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_block_block_with_text_onlies",
+  "info": {
+    "displayName": "blockWithTextOnly",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "richtext"
+    }
+  }
+}

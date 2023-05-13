@@ -156,6 +156,9 @@ const ClientConfig = {
               {
                 from: path.resolve(__dirname, "src", "public", "favicon.ico"),
               },
+              {
+                from: path.resolve(__dirname, "src", "public", "robots.txt"),
+              },
             ],
           }),
         ]

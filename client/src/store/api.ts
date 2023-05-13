@@ -5,7 +5,7 @@ import {
   reactHooksModule,
 } from "@reduxjs/toolkit/query/react";
 import { ENV_API_URL } from "../env";
-import { ISocials, IStrapiAttributes, TPageKeys } from "../@types/page";
+import { IGoods, ISocials, IStrapiAttributes, TPageKeys } from "../@types/page";
 
 const createApi = buildCreateApi(
   coreModule(),
@@ -33,7 +33,20 @@ export const api = createApi({
         },
       }),
     }),
+    getGoods: builder.query<
+      { data: { attributes: IGoods; id: number }[] },
+      { params?: Record<string, string> }
+    >({
+      query: ({ params }) => ({
+        url: "/commodities",
+        params: params ?? {},
+      }),
+    }),
   }),
 });
 
-export const { useGetPageDataByNameQuery, useGetSocialsQuery } = api;
+export const {
+  useGetPageDataByNameQuery,
+  useGetSocialsQuery,
+  useGetGoodsQuery,
+} = api;

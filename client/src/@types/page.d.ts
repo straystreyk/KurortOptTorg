@@ -12,6 +12,7 @@ interface ISeo {
 interface ISocialNetworks {
   name: string;
   link: string;
+  title?: string;
 }
 
 interface ISocials {
@@ -20,9 +21,16 @@ interface ISocials {
   socialNetworks?: ISocialNetworks[];
 }
 
+interface IGoods {
+  name: string;
+  description?: string;
+  price?: number;
+  images?: [];
+}
+
 export interface IMainPage {
   seo?: ISeo;
   socials?: ISocials;
 }
 
-export type TPageKeys = "main";
+export type TPageKeys = "main" | "product";

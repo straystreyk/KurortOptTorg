@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect, FC, ReactNode } from "react";
+import { useState, FC, ReactNode, useEffect } from "react";
 import { createPortal } from "react-dom";
 
 const createWrapperAndAppendToBody = (wrapperId: string) => {
@@ -16,7 +16,7 @@ export const ReactPortal: FC<{ children: ReactNode; wrapperId?: string }> = ({
     null
   );
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     let element = document.getElementById(wrapperId);
     let systemCreated = false;
     // if element is not found with wrapperId or wrapperId is not provided,

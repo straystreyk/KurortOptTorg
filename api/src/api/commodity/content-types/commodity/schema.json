@@ -1,10 +1,10 @@
 {
-  "kind": "singleType",
-  "collectionName": "products",
+  "kind": "collectionType",
+  "collectionName": "commodities",
   "info": {
-    "singularName": "product",
-    "pluralName": "products",
-    "displayName": "Cтраница \"Продукция\"",
+    "singularName": "commodity",
+    "pluralName": "commodities",
+    "displayName": "Товары",
     "description": ""
   },
   "options": {
@@ -16,46 +16,41 @@
     }
   },
   "attributes": {
-    "block1": {
-      "displayName": "blockWithTextOnly",
-      "type": "component",
-      "repeatable": false,
+    "name": {
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "component": "block.block-with-text-only"
+      "type": "string",
+      "required": true
     },
-    "seo": {
-      "type": "component",
-      "repeatable": false,
+    "description": {
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "component": "seo.seo"
+      "type": "text"
     },
-    "block2": {
-      "type": "component",
-      "repeatable": false,
+    "price": {
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "component": "block.block-with-text-only"
+      "type": "integer"
     },
-    "statics": {
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
       ],
-      "type": "media",
-      "multiple": true,
       "pluginOptions": {
         "i18n": {
           "localized": true

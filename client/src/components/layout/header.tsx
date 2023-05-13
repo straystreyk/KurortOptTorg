@@ -17,19 +17,19 @@ const links = [
     name: "pages.main",
   },
   {
-    to: "/price/",
+    to: "/products/",
     name: "pages.products",
   },
 ];
 
 export const Logo = () => (
-  <div className={classes.headerLogo}>
+  <Link to="/" className={classes.headerLogo}>
     <CustomIcon icon="logo" />
     <div className={classes.headerLogoName}>
       КурортОптТорг
       <span>Бетон, бетонные изделия</span>
     </div>
-  </div>
+  </Link>
 );
 
 const Navigation = () => {

@@ -18,8 +18,19 @@ export const prepareSsr: (url: string) => Promise<TConfiguredStore> = async (
     store.dispatch(api.endpoints.getSocials.initiate());
   }
 
-  if (url === "/price" || url === "/price/") {
+  if (url === "/products" || url === "/products/") {
+    store.dispatch(
+      api.endpoints.getPageDataByName.initiate({
+        name: "product",
+        params: { populate: "seo.meta,block1,block2" },
+      })
+    );
     store.dispatch(api.endpoints.getSocials.initiate());
+    store.dispatch(
+      api.endpoints.getGoods.initiate({
+        params: { populate: "images", sort: "price:asc" },
+      })
+    );
   }
 
   try {

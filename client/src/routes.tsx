@@ -2,7 +2,7 @@ import React from "react";
 import { RouteObject, useRoutes } from "react-router-dom";
 import { defaultLanguage, supportedLngs } from "./i18n";
 import { MainPage } from "./pages/main";
-import { Price } from "./pages/price";
+import { Products } from "./pages/products";
 
 const commonRoutes: RouteObject[] = [
   ...supportedLngs.map(
@@ -15,8 +15,8 @@ const commonRoutes: RouteObject[] = [
             element: <MainPage />,
           },
           {
-            path: "price",
-            element: <Price />,
+            path: "products",
+            element: <Products />,
           },
         ],
       } as RouteObject)

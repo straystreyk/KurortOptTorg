@@ -7,5 +7,5 @@ export const Block: FC<{ className?: string; children: ReactNode }> = ({
   className,
   children,
 }) => {
-  return <div className={cn(className, classes.block)}>{children}</div>;
+  return <section className={cn(className, classes.block)}>{children}</section>;
 };

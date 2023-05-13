@@ -20,6 +20,10 @@
 .container {
   max-width: 1280px;
   margin: 0 auto;
+
+  @media (max-width: 1300px) {
+    max-width: 94vw;
+  }
 }
 
 .header {
@@ -43,6 +47,7 @@
   display: flex;
   align-items: flex-end;
   gap: 0.5rem;
+  color: $black;
 }
 
 .headerLogoName {
@@ -77,10 +82,13 @@
 
 .footer {
   box-shadow: $boxShadow;
+  margin-top: 5rem;
 }
 
 .firstFooter {
   padding: 1.5rem 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 .secondFooter {
@@ -101,8 +109,28 @@
 .headerSocialLink {
   color: $black;
   @include transition(color);
+  display: flex;
 
   &:hover {
     color: $primary;
   }
 }
+
+.socialFooter {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.footerLinkItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: $black;
+  @include transition(color);
+
+  &:hover {
+    color: $primary;
+  }
+}
+
