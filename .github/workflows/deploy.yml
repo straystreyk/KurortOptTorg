@@ -6,10 +6,10 @@ on:
       - CustomBranch
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-22.04
     steps:
-      - with:
+        with:
           node-version: '18'
           # Setup key
           - run: set -eu
