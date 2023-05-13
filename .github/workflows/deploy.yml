@@ -6,17 +6,17 @@ on:
       - CustomBranch
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-22.04
     steps:
       - with:
           node-version: '18'
-      # Setup key
-      - run: set -eu
-      - run: mkdir "$HOME/.ssh"
-      - run: echo "${{ secrets.key }}" > "$HOME/.ssh/key"
-      - run: chmod 600 "$HOME/.ssh/key"
-      # Deploy
-      - run: cd client
-      - run: npm ci
-      - run: rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete . root@185.41.161.127:/sites/
+          # Setup key
+          - run: set -eu
+          - run: mkdir "$HOME/.ssh"
+          - run: echo "${{ secrets.key }}" > "$HOME/.ssh/key"
+          - run: chmod 600 "$HOME/.ssh/key"
+          # Deploy
+          - run: cd client
+          - run: npm ci
+          - run: rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete . root@185.41.161.127:/sites/
